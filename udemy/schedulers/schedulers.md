@@ -1,6 +1,7 @@
 # Schedulers
 
 ## Exemplo block
+
 ```java
     @Test
     public void blockingOperation() throws InterruptedException {
@@ -31,7 +32,7 @@
         }
         Thread.sleep(20_000);
     }
-	```
+ ```
 
 ## publishOn(Scheduler.boundedElastic())
 
@@ -166,7 +167,6 @@ public class VideoAnalyser {
 }
 ```
 
-
 ### Exemplo 1 utilizando Parallel
 
 ```java
@@ -212,11 +212,10 @@ public class VideoAnalyser {
 ```
 
 # Resumo
+
 Scheduler é uma abstração que dá ao usuário controle sobre o threading.
 
 Existem 3 tipos de schedulers: **boundedElastic()**, **parallel()** e **single()**.
-
-
 
 **publishOn(Scheduler scheduler):** Usado para definir o scheduler onde as operações subsequentes de um fluxo (como map, filter, etc.) serão executadas.
 
