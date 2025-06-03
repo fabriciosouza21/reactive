@@ -83,7 +83,7 @@ Existem tres tipos de Schedulers:
 
 ## subscribeOn()
 
-Execute subscribe, onSubscribe e request em um Scheduler's especificado Scheduler.Worker. Portanto, colocar este operador em qualquer lugar da cadeia também impactará o contexto de execução dos sinais onNext/onError/onComplete desde o início da cadeia até a próxima ocorrência de um ' publishOn.
+Execute subscribe, onSubscribe e request em um Scheduler's especificado Scheduler.Worker. Portanto, colocar este operador em qualquer lugar da cadeia também impactará o contexto de execução dos sinais onNext/onError/onComplete desde o início da cadeia até a próxima ocorrência de um publishOn.
 ![alt text](image-1.png)
 
 ```java
