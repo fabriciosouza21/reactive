@@ -1,65 +1,104 @@
+# ⚙️ Sistema Tradicional vs Sistema Reativo
 
-# Sistema tradicional vs Sistema reativo
+---
 
-## Sistema tradicional
+## 🏛️ Sistema Tradicional
 
 ![alt text](image.png)
 
-## Sistema reativo
+Sistemas tradicionais seguem uma abordagem **sincrônica e bloqueante**. Cada solicitação ocupa uma thread até que seja totalmente processada. Isso consome recursos de forma linear e apresenta dificuldades para escalar com eficiência sob cargas altas.
 
-è um sitema projetado para ser altamente responsivo, resiliente e elástico lidando de forma eficaz com solicitações e falhas, garantindo um desempenho consistente.
+---
 
-Sistema reativos tem uma visão de escalabilidade e resiliência aonde os componentes podem facilmente se eslaveis é ter resiliencia com serviços. No geral uma form de executar é por meio de uma arquitetura orientada a eventos.
+## ⚡ Sistema Reativo
+
+Sistemas reativos são projetados para lidar de maneira eficiente com **concorrência, falhas e variações de carga**, mantendo alta disponibilidade e desempenho. Eles seguem os princípios do **[Manifesto Reativo](https://www.reactivemanifesto.org/)**, sendo:
+
+- **Responsivos**
+- **Resilientes**
+- **Elásticos**
+- **Orientados a eventos**
 
 ![alt text](image-1.png)
 
-## Manifesto reativo
+Em um sistema reativo, os componentes se comunicam de forma **assíncrona** por meio de **eventos e mensagens**, reduzindo o acoplamento e promovendo escalabilidade. Isso é frequentemente implementado usando **arquiteturas orientadas a eventos** e **streaming de dados**.
 
-- **Responsivo**:  O sistema deve responder rapidamente a todas as solicitações, mesmo sob carga.
-- **Elástico**: O sistema deve ser capaz de se adaptar a variações na carga, aumentando ou diminuindo os recursos conforme necessário.
-- **Resiliente**:  O sistema permance responsivo mesmo diante de falhas, garantindo que os serviços continuem disponíveis.
-- **Orientado a eventos**: O sistema deve ser projetado para lidar com eventos de forma assíncrona, permitindo uma comunicação eficiente entre os componentes.
+---
 
-## Programação reativa
+## 📜 Manifesto Reativo
 
-### Foco em desenvolvimento assíncrono e não bloqueante
+- **📶 Responsivo**: O sistema responde rapidamente a solicitações, mesmo sob carga.
+- **🧬 Elástico**: Adapta-se a variações na carga, escalando horizontal ou verticalmente.
+- **🛡️ Resiliente**: Continua funcionando mesmo diante de falhas parciais, mantendo disponibilidade.
+- **📡 Orientado a eventos**: Os componentes trocam mensagens assíncronas e são reativos a mudanças.
 
-No java para resolver o problema é utilizado um conceito semelhante ao do node do event loop. A biblioteca do java que implementa esse conceito é o [Project Reactor](https://projectreactor.io/).
+---
 
-Uma thread está sempre é executada no event loop, e atribuir uma tarefa a uma outra thread que está no poll de threads. Assim o event loop não fica bloqueado e pode continuar a processar outras tarefas.
+## 💻 Programação Reativa
+
+A **programação reativa** é um paradigma focado no **fluxo de dados assíncrono** e **não bloqueante**, onde mudanças em dados (streams) são **propagadas automaticamente**. Essa abordagem facilita a construção de sistemas com maior desempenho, escalabilidade e resiliência.
+
+---
+
+### 🧠 Modelo Assíncrono e Não Bloqueante
+
+No **Java**, bibliotecas como o **[Project Reactor](https://projectreactor.io/)** implementam o padrão **Reactive Streams**, com os conceitos de `Publisher`, `Subscriber`, `Subscription` e `Processor`.
 
 ![alt text](image-2.png)
 
-### Programação funcional
+Nesse modelo:
 
-A programação utilizada é a programação funcional, que é um paradigma declartivo, utilizando streams e lambdas.
+- O *Event Loop* gerencia tarefas sem bloqueios;
+- Tarefas são executadas por **thread pools leves**, permitindo milhares de operações simultâneas com poucas threads;
+- O sistema reage a **eventos emitidos dinamicamente**, como cliques, mensagens, ou mudanças em dados.
 
-### Propagação de mundaças data streams
+---
 
-Cada etapa gerar eventos que são processados de forma assíncrona.
+### 🧩 Programação Funcional
 
-### Controle de backpressure
+A programação reativa combina conceitos da **programação funcional**, como:
 
-O controle de backpressure é um mecanismo que permite que os sistemas reativos gerenciem a pressão de dados entre produtores e consumidores. Ele garante que os consumidores não sejam sobrecarregados com mais dados do que podem processar, evitando assim problemas de desempenho e falhas.
+- **Imutabilidade**
+- **Composição de funções**
+- **Streams**
+- **Funções puras**
 
-Esse conceito pode ser visualizado em serviços de mensagerias como o kafka, onde kafka tem o sistema balaceamento entre partições e consumidores.
+Isso facilita o encadeamento e a manipulação de fluxos de dados complexos de maneira clara e previsível.
+
+---
+
+### 🔁 Fluxos de Dados (Data Streams)
+
+Os dados fluem como **streams de eventos**. Cada transformação gera um novo stream — similar a um `pipeline` — onde cada operador (`map`, `filter`, `flatMap`, etc.) processa os dados de forma assíncrona.
+
+---
+
+### 🧰 Backpressure
+
+O **backpressure** é essencial para evitar sobrecarga. Ele regula o ritmo entre **produtores** e **consumidores** de dados.
+
+> 📌 Se um consumidor não consegue acompanhar o ritmo de produção, o sistema pode pausar, descartar ou armazenar mensagens, evitando perda ou travamentos.
+
+Este conceito está presente em soluções como **Kafka**, onde há balanceamento entre **partições** e **consumidores**, garantindo distribuição eficiente.
 
 ![alt text](image-3.png)
 
-### Programação reativa
+---
 
-è uma abordagem no desenvolvimento de software que se concentra em lidar a **propagação de mudanças**  em **fluxos de dados** de **forma assíncrona e não bloqueante com mecanismo de bakcpressure**, permitindo que sistema reajam automaticamente a esssas mudanças.
+## 🔍 Definição Prática
 
-## Resumo
+> **Programação reativa** é uma forma de construir software que lida com **fluxos de dados dinâmicos**, onde as mudanças são tratadas **de forma assíncrona, não bloqueante** e com **controle de fluxo (backpressure)**.
 
-- **Sistema reativo**: Sistemas construídos de forma responsiva, resiliente, escaláveis e orientados a mensagens.
+---
 
-- **Programação reativa**: Paradigma de programação que reage a eventos de forma assíncrona e não bloqueante com backpressure.
+## 📋 Resumo
 
-- **Fluxo síncrono**: Execução sequencial de tarefas, aguardando a conclusão de cada uma antes de continuar para a próxima.
+- **🔁 Sistema Reativo**: Projetado para ser responsivo, resiliente, escalável e orientado a mensagens.
+- **🧪 Programação Reativa**: Paradigma que trata eventos e dados de forma assíncrona e não bloqueante.
+- **🔗 Fluxo Síncrono**: Tarefas são executadas sequencialmente, bloqueando a thread.
+- **⚡ Fluxo Assíncrono**: Tarefas são executadas em paralelo sem bloqueios diretos.
+- **🚫 Não Bloqueante**: O código continua executando sem aguardar a finalização de tarefas lentas.
+- **📉 Backpressure**: Mecanismo de controle para evitar sobrecarga entre produtores e consumidores.
 
-- **Fluxo assíncrono**: Execução simultânea de tarefas, permitindo paralelismo.
+---
 
-- **Não bloqueante**: Capacidade de um programa continuar a execução sem ser bloqueado por uma outra tarefa. No Project Reactor, o mecanismo conhecido como Event Loop otimiza o uso das threads.
-
-- **Backpressure**: Mecanismo de controle para lidar com a discrepância de velocidade entre a produção e consumo de dados.
